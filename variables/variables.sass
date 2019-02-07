@@ -1,0 +1,53 @@
+
+
+
+// ==== Grid Mixins ==== //
+// media break points
+$phone_break_point: 576px
+$tablet_break_point: 768px
+$medium_break_point: 992px
+$large_break_point: 1199px
+
+// Media Query
+=phone
+    @media (max-width: $phone_break_point)
+        @content
+
+=tablet
+    @media (max-width: $tablet_break_point)
+        @content
+
+=medium
+    @media (max-width: $medium_break_point)
+        @content
+
+=large
+    @media (max-width: $large_break_point)
+        @content
+
+=xlarge
+    @media screen
+        @content
+
+// ====== Grid ====== //
+=row
+    display: flex
+    flex-wrap: wrap
+
+=col($ncol: 12, $base: 12)
+    min-width: 100% * $ncol / $base
+    flex-basis: 100% * $ncol / $base
+
+// ===== General BG ==== //
+=background($url)
+    background:
+        image: url($url)
+        repeat: no-repeat
+        position: center center
+        size: cover
+
+=flex-center
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center

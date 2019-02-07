@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card card-body" *ngIf= "toggle">
+        <h4>Student Details</h4>
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="image-profile">
+              <img
+                src="{{data.image}}"
+                alt="image-student"
+              />
+            </div>
+            <div>
+              <h5>{{data.name}}</h5>
+            </div>
+          </div>
+
+          <div class="col-sm-8">
+            <ul>
+              <li>{{data.faculty}}</li>
+              <li>{{data.phone}}</li>
+              <li>{{data.date}}</li>
+              <li>{{data.address}}</li>
+            </ul>
+          </div>
+
+          <div class="col-sm-2 col-btns">
+            <div class="btns-edit-delete">
+              <button class="btn btn-dark" (click)="onPressEdit()">Edit</button>
+              <button
+                class="btn btn-danger"
+                data-backdrop="static"
+                data-keyboard="false"
+                data-toggle="modal"
+                data-target="#myModal"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are You Sure Want To Delete</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="handlePressYesToDelete()">
+            Yes
+          </button>
+          <button type="button" class="btn btn-light" data-dismiss="modal"  >
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="success">
+       Deleted {{data.name}} Successfully!
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+        Deleted {{data.name}} Fail Please Try Again!
+     </div>
+</div>
