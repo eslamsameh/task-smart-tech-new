@@ -1,2 +1,27 @@
-<app-slide-component></app-slide-component>
-<app-user-details-component></app-user-details-component>
+
+<div class="container">
+
+<ngb-carousel *ngIf="data">
+    <ng-template ngbSlide *ngFor="let d of data" >
+      <img [src]="d.image" alt="Random first slide" (click)="onPressImageStudent(d)" >
+      <div class="carousel-caption">
+          <div class="item-flex">
+              <div class="item-feild">
+                <p>{{ d.name }}</p>
+                <span> {{ d.age }}</span>
+              </div>
+              <div>
+                <p>{{ d.faculty }}</p>
+              </div>
+            </div>
+      </div>
+    </ng-template>
+
+
+
+  </ngb-carousel>
+</div>
+<div *ngIf="showDetails">
+  <app-user-details-component [dataSource]="dataDetail" (sendIdToPerant)="resviceIdFromChild($event)" ></app-user-details-component>
+</div>
+

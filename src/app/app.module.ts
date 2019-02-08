@@ -1,14 +1,12 @@
 // imports
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule, NgbCarousel, NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
 import { RouterModule, Routes } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // decleartion
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/header/header.component";
-import { EditUserComponentComponent } from "./components/edit-user-component/edit-user-component.component";
-import { SlideComponentComponent } from "./components/slide-component/slide-component.component";
 import { UserDetailsComponentComponent } from "./components/user-details-component/user-details-component.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { AddStudentComponent } from "./pages/add-student/add-student.component";
@@ -28,13 +26,11 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    EditUserComponentComponent,
-    SlideComponentComponent,
     UserDetailsComponentComponent,
     HomePageComponent,
     AddStudentComponent,
     AddStudentComponent,
-    EditStudentComponent
+    EditStudentComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +38,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgbCarouselModule
   ],
   providers: [SendDataStudentService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}

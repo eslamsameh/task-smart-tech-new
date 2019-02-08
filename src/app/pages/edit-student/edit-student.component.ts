@@ -16,7 +16,7 @@ export class EditStudentComponent implements OnInit {
   id: any;
   image: any;
   constructor(
-    private _resiveData: SendDataStudentService,
+    private _dataStudentProvider: SendDataStudentService,
     public router: Router,
     public activeRoute: ActivatedRoute
   ) {
@@ -38,8 +38,8 @@ export class EditStudentComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params.id;
-    let Res = this._resiveData.resviceCurrentData();
-    let date = Res.date.split("/").reverse().join("-");
+    let Res = this._dataStudentProvider.currentData;
+    let date = Res.birth_date.split("/").reverse().join("-");
     setTimeout(() => {
       this.addStudentform.patchValue({ name: Res.name });
       this.addStudentform.patchValue({ faculty: Res.faculty });
@@ -58,7 +58,7 @@ export class EditStudentComponent implements OnInit {
   addStudent(a) {
     a["image"] = this.image;
     a["id"] = this.id;
-    this._resiveData.editStudentData(a);
+    this._dataStudentProvider.editStudent(a);
     this.success = true;
     setTimeout(() => {
       this.router.navigateByUrl("/Home");

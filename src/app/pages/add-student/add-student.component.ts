@@ -14,7 +14,7 @@ export class AddStudentComponent implements OnInit {
   addStudentform: FormGroup;
   id: any;
   image: any;
-  constructor(public router: Router, private _sendNewData: SendDataStudentService) {
+  constructor(public router: Router, private _dataStudentProvider: SendDataStudentService) {
     this.addStudentform = new FormGroup({
       name: new FormControl("", [
         Validators.required,
@@ -32,7 +32,7 @@ export class AddStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.id = this._sendNewData.lenghtOfData + 1;
+   this.id = this._dataStudentProvider.getLength() + 1;
   }
   onChangeImage(e) {
     this.imagePath = e.target.value;
@@ -42,7 +42,7 @@ export class AddStudentComponent implements OnInit {
     this.success = true;
     a["id"]= this.id;
     a["image"] = this.image;
-    this._sendNewData.addStudentToData(a);
+    this._dataStudentProvider.addStudent(a);
     setTimeout(() => {
       this.router.navigateByUrl("/Home");
     }, 1000);

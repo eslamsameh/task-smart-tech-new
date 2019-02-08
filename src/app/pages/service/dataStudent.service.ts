@@ -4,11 +4,9 @@ import { Subject, BehaviorSubject } from "rxjs";
 
 @Injectable()
 export class SendDataStudentService {
-  public Data: Subject<any> = new Subject<any>();
-  public SpliceData: Subject<any> = new Subject<any>();
-  CurrentData: any;
-  lenghtOfData: any;
-  newData = [];
+  // public Data: BehaviorSubject<any> = new BehaviorSubject<any>('');
+  // public CurrentData: Subject<any> = new Subject<any>();
+  length: any;
   arrayOfAllData = [
     {
       id: 1,
@@ -54,57 +52,36 @@ export class SendDataStudentService {
       phone: "201148442784"
     }
   ];
+  currentData: any;
   constructor() {}
 
   getData$() {
-    return this.Data.asObservable();
-  }
-  getToData$() {
-    return this.SpliceData.asObservable();
-  }
-
-  SendData(value) {
-    this.Data.next(value);
-  }
-  SendToSplice(value) {
-    this.SpliceData.next(value);
-
-  }
-  spliceDataStudent(value) {
-    this.arrayOfAllData.forEach((v, i)=> {
-      if (v.id == value.id) {
-          this.arrayOfAllData.splice(i,1);
-
-      }
-    })
-  }
-  CurrentSendData(value) {
-    this.CurrentData = value;
-  }
-  resviceCurrentData() {
-    return this.CurrentData;
-  }
-  addStudentToData(value) {
-    this.arrayOfAllData.push(value);
-  }
-  resiveDataToPushToStudentArray() {
-    return this.newData;
-  }
-  SendLenghtOfData(value) {
-    this.lenghtOfData = value;
-  }
-  getAllData() {
     return this.arrayOfAllData;
   }
-  editStudentData(obj) {
-    this.arrayOfAllData.forEach((v,i)=>{
-      if (obj.id == v.id) {
-        this.arrayOfAllData.splice(i,1);
-        this.addStudentToData(obj);
+  DeleteData(id) {
+    this.arrayOfAllData.forEach((v, i) => {
+      if (id == v.id) {
+        this.arrayOfAllData.splice(i, 1);
       }
-    })
+    });
   }
-
+  getLength() {
+    this.length = this.arrayOfAllData.length;
+    return this.length;
+  }
+  addStudent(value) {
+    this.arrayOfAllData.push(value);
+  }
+  currentStudent(data) {
+    this.currentData = data;
+    return this.currentData;
+  }
+  editStudent(data) {
+    this.arrayOfAllData.forEach((v, i) => {
+      if (v.id == data.id) {
+        this.arrayOfAllData.splice(i, 1);
+        this.addStudent(data);
+      }
+    });
+  }
 }
-
-
